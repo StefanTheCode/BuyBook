@@ -6,20 +6,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BuyBook.Web.Models;
+using BuyBook.Application.PopulateDatabase;
 
 namespace BuyBook.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private BookPopulate _book;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, BookPopulate book)
         {
             _logger = logger;
+            _book = book;
         }
 
         public IActionResult Index()
         {
+            _book.PopulateTable();
             return View();
         }
 

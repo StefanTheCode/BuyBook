@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BuyBook.Application.Interfaces;
+using BuyBook.Application.PopulateDatabase;
+using BuyBook.Infrastructure.UploadExcel.Data;
 using BuyBook.PersistenceSQL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +27,10 @@ namespace BuyBook.Web
             services.AddControllersWithViews();
 
             services.AddDbContext<BuyBookDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped(typeof(IBuyBookDbContext), typeof(BuyBookDbContext));
+            services.AddTransient<ExcelReader>();
+            services.AddTransient<BookPopulate>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BuyBook.Application\BuyBook.Application.csproj" />
     <ProjectReference Include="..\BuyBook.PersistenceSQL\BuyBook.PersistenceSQL.csproj" />
   </ItemGroup>
 
