@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BuyBook.Domain.BookTag
+namespace BuyBook.Domain
 {
     public class BookTag : IEntity
     {
