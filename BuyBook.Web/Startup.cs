@@ -1,13 +1,15 @@
+using BuyBook.Application.CQRS.Users.Command.CreateUserCommand;
+using BuyBook.Application.CQRS.Users.Query;
 using BuyBook.Application.Interfaces;
-using BuyBook.Application.PopulateDatabase;
-using BuyBook.Infrastructure.UploadExcel.Data;
 using BuyBook.PersistenceSQL;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Reflection;
 
 namespace BuyBook.Web
 {
@@ -29,6 +31,9 @@ namespace BuyBook.Web
             services.AddDbContext<BuyBookDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IBuyBookDbContext), typeof(BuyBookDbContext));
+
+            services.AddMediatR(typeof(GetAllUsersQuery).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(CreateUserCommand).GetTypeInfo().Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
