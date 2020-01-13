@@ -13,17 +13,16 @@ namespace BuyBook.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private BookPopulate _book;
+        private RatingPopulate _rating;
 
-        public HomeController(ILogger<HomeController> logger, BookPopulate book)
+        public HomeController(ILogger<HomeController> logger, RatingPopulate rating)
         {
             _logger = logger;
-            _book = book;
+            _rating = rating;
         }
 
         public IActionResult Index()
         {
-            _book.PopulateTable();
             return View();
         }
 

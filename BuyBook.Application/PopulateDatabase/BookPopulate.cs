@@ -29,23 +29,19 @@ namespace BuyBook.Application.PopulateDatabase
             {
                 string[] booksData = _reader.LoadData(ReaderType.Book);
 
-                var selected = booksData.Select(x => x.Split(','));
+                var selected = booksData.Select(x => x.Split(';'));
 
                 IEnumerable<Book> books = selected
                               .Select(x => new Book
                               {
-                                  BookId = Int32.Parse(x[1]),
-                                  //BestBookId = Int32.Parse(x[2]),
-                                  //WorkId = Int32.Parse(x[3]),
-                                  BooksCount = Int32.Parse(x[4]),
-                                  ISBN = x[5],
-                                  ISBN13 = x[6],
-                                  Authors = x[7],
-                                  PublicationYear = Int32.Parse(x[8]),
-                                  OriginalTitle = x[9],
-                                  Title = x[10],
-                                  Language = x[11],
-                                  ImageUrl = x[22]
+                                  ISBN = x[0],
+                                  Title = x[1],
+                                  Authors = x[2],
+                                  PublicationYear = x[3],
+                                  Publisher = x[4],
+                                  ImageUrlS = x[5],
+                                  ImageUrlM = x[6],
+                                  ImageUrlL = x[7]
                               });
 
                 _dbContext.Book.AddRange(books);

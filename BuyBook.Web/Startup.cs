@@ -29,8 +29,6 @@ namespace BuyBook.Web
             services.AddDbContext<BuyBookDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IBuyBookDbContext), typeof(BuyBookDbContext));
-            services.AddTransient<ExcelReader>();
-            services.AddTransient<BookPopulate>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

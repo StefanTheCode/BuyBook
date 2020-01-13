@@ -15,16 +15,13 @@ namespace BuyBook.Infrastructure.UploadExcel.Data
                 switch (type)
                 {
                     case ReaderType.Book:
-                        fileName = "books.csv";
+                        fileName = "BX-Books.csv";
                         break;
-                    case ReaderType.BookTag:
-                        fileName = "book_tags";
+                    case ReaderType.Users:
+                        fileName = "BX-Users.csv";
                         break;
                     case ReaderType.Rating:
-                        fileName = "ratings";
-                        break;
-                    case ReaderType.Tag:
-                        fileName = "tags";
+                        fileName = "BX-Book-Ratings.csv";
                         break;
                     default:
                         fileName = string.Empty;
@@ -49,8 +46,7 @@ namespace BuyBook.Infrastructure.UploadExcel.Data
     public enum ReaderType
     {
         Book = 1,
-        BookTag = 2,
-        Rating = 3,
-        Tag = 4
+        Users = 2,
+        Rating = 3
     }
 }

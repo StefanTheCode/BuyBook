@@ -10,8 +10,7 @@ namespace BuyBook.Application.Interfaces
     {
         DbSet<Book> Book { get; set; }
         DbSet<Rating> Rating { get; set; }
-        DbSet<Tag> Tag { get; set; }
-        DbSet<BookTag> BookTag { get; set; }
+        DbSet<User> User { get; set; }
 
         int SaveChanges();
     }
