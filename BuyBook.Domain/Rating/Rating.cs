@@ -8,8 +8,8 @@ namespace BuyBook.Domain
     public class Rating : IEntity
     {
         public int Id { get; set; }
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public string ISBN { get; set; }
-        public string BookRating { get; set; }
+        public int BookRating { get; set; }
     }
 }

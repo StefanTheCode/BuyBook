@@ -35,9 +35,9 @@ namespace BuyBook.Application.PopulateDatabase
                 IEnumerable<Rating> ratings = selected
                               .Select(x => new Rating
                               {
-                                  UserId = x[0],
+                                  UserId = Int32.Parse(x[0]),
                                   ISBN = x[1],
-                                  BookRating = x[2]
+                                  BookRating = Int32.Parse(x[2])
                               });
 
                 _dbContext.Rating.AddRange(ratings);
