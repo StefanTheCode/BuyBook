@@ -11,15 +11,17 @@ namespace BuyBook.Application.PopulateDatabase
     public class BookPopulate
     {
         IBuyBookDbContext _dbContext;
+        IMongoDbContext _mongoDbContext;
         ExcelReader _reader;
 
         public BookPopulate()
         {
         }
 
-        public BookPopulate(IBuyBookDbContext context, ExcelReader excelReader)
+        public BookPopulate(IBuyBookDbContext context, ExcelReader excelReader, IMongoDbContext mongo)
         {
             _dbContext = context;
+            _mongoDbContext = mongo;
             _reader = excelReader;
         }
 
@@ -46,6 +48,8 @@ namespace BuyBook.Application.PopulateDatabase
 
                 _dbContext.Book.AddRange(books);
                 _dbContext.SaveChanges();
+
+                _mongoDbContext.Books.InsertMany(books);
             }
             catch (Exception e)
             {

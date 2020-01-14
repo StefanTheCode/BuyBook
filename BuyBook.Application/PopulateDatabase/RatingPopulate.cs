@@ -11,15 +11,17 @@ namespace BuyBook.Application.PopulateDatabase
     public class RatingPopulate
     {
         IBuyBookDbContext _dbContext;
+        IMongoDbContext _mongoDbContext;
         ExcelReader _reader;
 
         public RatingPopulate()
         {
         }
 
-        public RatingPopulate(IBuyBookDbContext context, ExcelReader excelReader)
+        public RatingPopulate(IBuyBookDbContext context, ExcelReader excelReader, IMongoDbContext mongo)
         {
             _dbContext = context;
+            _mongoDbContext = mongo;
             _reader = excelReader;
         }
 
@@ -37,11 +39,13 @@ namespace BuyBook.Application.PopulateDatabase
                               {
                                   UserId = Int32.Parse(x[0]),
                                   ISBN = x[1],
-                                  BookRating = Int32.Parse(x[2])
+                                  BookRating = Int32.Parse(x[2]),
                               });
 
                 _dbContext.Rating.AddRange(ratings);
                 _dbContext.SaveChanges();
+
+                _mongoDbContext.Ratings.InsertMany(ratings);
             }
             catch (Exception e)
             {

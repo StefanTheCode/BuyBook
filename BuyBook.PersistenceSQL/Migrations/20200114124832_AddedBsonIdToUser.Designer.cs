@@ -4,14 +4,16 @@ using BuyBook.PersistenceSQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BuyBook.PersistenceSQL.Migrations
 {
     [DbContext(typeof(BuyBookDbContext))]
-    partial class BuyBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200114124832_AddedBsonIdToUser")]
+    partial class AddedBsonIdToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,9 +30,6 @@ namespace BuyBook.PersistenceSQL.Migrations
 
                     b.Property<string>("Authors")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("BsonId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ISBN")
                         .HasColumnType("nvarchar(max)");
@@ -68,9 +67,6 @@ namespace BuyBook.PersistenceSQL.Migrations
                     b.Property<int>("BookRating")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("BsonId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("ISBN")
                         .HasColumnType("nvarchar(max)");
 
@@ -92,11 +88,11 @@ namespace BuyBook.PersistenceSQL.Migrations
                     b.Property<string>("Age")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("BsonId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("MongoId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

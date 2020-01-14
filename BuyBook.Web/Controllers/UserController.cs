@@ -2,6 +2,7 @@
 using BuyBook.Application.CQRS.Users.Command.CreateUserCommand;
 using BuyBook.Application.CQRS.Users.Command.DeleteUserCommand;
 using BuyBook.Application.CQRS.Users.Command.UpdateUserCommand;
+using BuyBook.Application.CQRS.Users.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,6 +42,14 @@ namespace BuyBook.Web.Controllers
         public async Task<ActionResult> DeleteUser([FromBody]DeleteUserCommand deleteUser)
         {
             var result = _mediator.Send(deleteUser);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetAllUsers()
+        {
+            var result = _mediator.Send(new GetAllUsersQuery());
 
             return Ok(result);
         }

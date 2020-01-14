@@ -1,4 +1,5 @@
 ﻿using BuyBook.Domain.Common;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,5 +17,13 @@ namespace BuyBook.Domain
         public string ImageUrlS { get; set; }
         public string ImageUrlM { get; set; }
         public string ImageUrlL { get; set; }
+        [BsonId]
+        [BsonElement("_id")]
+        public Guid BsonId { get; set; }
+
+        public static string GetDomainName()
+        {
+            return "Book";
+        }
     }
 }
